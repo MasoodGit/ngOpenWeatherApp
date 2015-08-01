@@ -1,10 +1,24 @@
 
-var openWeatherMapApp = angular.module("openWeatherMapApp",['ngMessages','ngRoute']);
-openWeatherMapApp.run(function($rootScope,$location){
-  $rootScope.$on('$routeChangeError', function(){
+var openWeatherMapApp = angular.module("openWeatherMapApp",['ngMessages','ngRoute','ngAnimate']);
+
+openWeatherMapApp.run(function($rootScope,$location,$timeout) {
+  
+  $rootScope.$on('$routeChangeError', function() {
     $location.path('/error');
   });
-});
+  
+  $rootScope.$on('$routeChangeStart',function() {
+    $rootScope.isLoading = true;
+  });
+  
+  $rootScope.$on('$routeChangeSuccess',function() {
+    $timeout(function() {
+      $rootScope.isLoading = false;
+    },1500);
+  });
+
+})
+
 openWeatherMapApp.value('ownCities',['New York','Mumbai','Pune']);
 
 openWeatherMapApp.config(function($routeProvider,$locationProvider) {
@@ -35,6 +49,7 @@ openWeatherMapApp.config(function($routeProvider,$locationProvider) {
   })
   .otherwise('/error');
 });
+
 
 openWeatherMapApp.controller('HomeController',function($scope) {
 

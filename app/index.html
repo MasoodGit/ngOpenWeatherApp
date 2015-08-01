@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
     <title>Open Weather App</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-  <body>
+  <body ng-class="{'loading' :isLoading}">
   <a href="#/cities/New_York">New York</a>
   <a href="#/cities/Mumbai">Mumbai</a>
   <a href="#/cities/Pune">Pune</a>
-  <div ng-view>
+  <div ng-view class="animate-view">
 
   </div>
   <script type="text/javascript" src="bower_components/angular/angular.js"></script>
   <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
   <script type="text/javascript" src="bower_components/angular-messages/angular-messages.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
   <script type="text/javascript" src="app.js"></script>
   </body>
 
